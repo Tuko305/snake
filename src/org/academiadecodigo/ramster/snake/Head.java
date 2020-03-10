@@ -36,19 +36,22 @@ public class Head {
         return position;
     }
 
-    public int getxSpeed() {
-        return xSpeed;
-    }
+    public boolean move() {
 
-    public int getySpeed() {
-        return ySpeed;
-    }
-
-    public void move() {
-
+        if(this.position.getCol() + xSpeed < 0 || this.position.getCol() + xSpeed >= field.getCols()){
+            xSpeed = 0;
+            ySpeed = 0;
+            return true;
+        }
+        if(this.position.getRow() + ySpeed < 0 || this.position.getRow() + ySpeed >= field.getRows()){
+            xSpeed = 0;
+            ySpeed = 0;
+            return true;
+        }
         this.position.updateCol(xSpeed);
         this.position.updateRow(ySpeed);
         this.headRectangle.translate((xSpeed * field.getCellSize()), (ySpeed * field.getCellSize()));
+        return false;
 
     }
 

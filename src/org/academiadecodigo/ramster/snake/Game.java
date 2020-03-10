@@ -20,7 +20,7 @@ public class Game {
     private boolean paused;
 
 
-    public Game(int cols, int rows, int cellSize){
+    public Game(int cols, int rows, int cellSize) {
         this.gameCols = cols;
         this.gameRows = rows;
         this.paused = false;
@@ -32,15 +32,28 @@ public class Game {
 
     }
 
-    public void init(){
+    public void setPaused(boolean paused) {
+        this.paused = paused;
+        if (paused){
+            System.out.println("You have paused the game");
+            return;
+        }
+        System.out.println("You have unpaused the game");
+    }
+
+    public boolean getPaused(){
+        return this.paused;
+    }
+
+    public void init() {
         playField.init();
-        for (int i = 0; i < allPositions.length; i++){
-            for (int j = 0; j < allPositions[i].length; j++){
+        for (int i = 0; i < allPositions.length; i++) {
+            for (int j = 0; j < allPositions[i].length; j++) {
                 allPositions[i][j] = new Position(i, j);
             }
         }
-        System.out.println(allPositions[(gameCols-1)][(0)].getRow());
-        head.setPosition(new Position((gameCols/2) -1,((gameRows/2)-1)));
+        System.out.println(allPositions[(gameCols - 1)][(0)].getRow());
+        head.setPosition(new Position((gameCols / 2) - 1, ((gameRows / 2) - 1)));
         head.getHeadRectangle().setColor(Color.RED);
         head.getHeadRectangle().fill();
 
@@ -48,9 +61,9 @@ public class Game {
 
     }
 
-    public void createFood(){
-        int randomCol = (int)(Math.random() * gameCols);
-        int randomRow = (int)(Math.random() * gameRows);
+    public void createFood() {
+        int randomCol = (int) (Math.random() * gameCols);
+        int randomRow = (int) (Math.random() * gameRows);
 
         if (this.food == null) {
             if (!allPositions[randomCol][randomRow].isOccupied() && !allPositions[randomCol][randomRow].hasFood()) {
@@ -66,35 +79,44 @@ public class Game {
         createFood();
     }
 
-    public void start() throws InterruptedException{
+    public void start() throws InterruptedException {
 
 
-        while(true){
+        while (true) {
 
+            while (paused){
                 Thread.sleep(50);
-                int oldCols = head.getPosition().getCol();
-                int oldRows = head.getPosition().getRow();
-                head.move();
-                if (!queue.isEmpty()) {
-                    BodyPart tail = queue.poll();
-                    tail.setNewPosition(allPositions[oldCols][oldRows]);
-                    queue.offer(tail);
-                }
-                int headCols = head.getPosition().getCol();
-                int headRows = head.getPosition().getRow();
 
-                if (collision.checkCollision(allPositions[headCols][headRows])){
-                    System.out.println("you have lost the game");
-                    return;
-                }
-                if(collision.checkFoodCollision(allPositions[headCols][headRows])){
-                    System.out.println("omnomnom");
-                    queue.offer(new BodyPart(allPositions[headCols][headRows], playField));
-                    food.getEaten();
-                    createFood();
-                }
+            }
+            Thread.sleep(50);
+            int oldCols = head.getPosition().getCol();
+            int oldRows = head.getPosition().getRow();
+            boolean deadlyMove;
+            deadlyMove = head.move();
 
+            if (deadlyMove){
+                System.out.println("You have gone out of bounds");
+                return;
+            }
 
+            if (!queue.isEmpty()) {
+                BodyPart tail = queue.poll();
+                tail.setNewPosition(allPositions[oldCols][oldRows]);
+                queue.offer(tail);
+            }
+            int headCols = head.getPosition().getCol();
+            int headRows = head.getPosition().getRow();
+
+            if (collision.checkCollision(allPositions[headCols][headRows])) {
+                System.out.println("Snake body collision detected, you have lost the game");
+                return;
+            }
+            if (collision.checkFoodCollision(allPositions[headCols][headRows])) {
+                System.out.println("omnomnom");
+                queue.offer(new BodyPart(allPositions[headCols][headRows], playField));
+                food.getEaten();
+                createFood();
+            }
 
         }
     }

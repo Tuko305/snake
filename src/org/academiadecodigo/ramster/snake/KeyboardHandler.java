@@ -72,7 +72,9 @@ public class KeyboardHandler implements org.academiadecodigo.simplegraphics.keyb
                 head.moveRight();
 
                 break;
+            case KeyboardEvent.KEY_SPACE:
 
+                game.setPaused(!game.getPaused());
 
         }
 
