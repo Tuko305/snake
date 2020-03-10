@@ -5,11 +5,13 @@ public class Position {
     private int col;
     private int row;
     private boolean isOccupied;
+    private boolean hasFood;
 
-    public Position(int col, int row){
+    public Position(int col, int row) {
         this.col = col;
         this.row = row;
         isOccupied = false;
+        hasFood = false;
     }
 
     public int getCol() {
@@ -24,6 +26,10 @@ public class Position {
         return isOccupied;
     }
 
+    public boolean hasFood() {
+        return hasFood;
+    }
+
     public void setCol(int col) {
         this.col = col;
     }
@@ -35,4 +41,10 @@ public class Position {
     public void setOccupied(boolean occupied) {
         isOccupied = occupied;
     }
+
+    public void setFooded(boolean fooded){
+        hasFood = fooded;
+    }
+
+
 }

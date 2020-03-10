@@ -5,8 +5,11 @@ public class Head {
     private Position position;
     private PlayField field;
 
-    public Head(PlayField field, Position position){
+    public Head(PlayField field){
         this.field = field;
+    }
+
+    public void setPosition(Position position){
         this.position = position;
     }
 
