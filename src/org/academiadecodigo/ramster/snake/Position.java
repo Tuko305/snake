@@ -38,6 +38,14 @@ public class Position {
         this.row = row;
     }
 
+    public void updateCol(int col){
+        this.col += col;
+    }
+
+    public void updateRow(int row){
+        this.row += row;
+    }
+
     public void setOccupied(boolean occupied) {
         isOccupied = occupied;
     }

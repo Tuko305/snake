@@ -10,21 +10,26 @@ public class Game {
     private int gameCols;
     private int gameRows;
 
-    private Queue queue = new LinkedList<BodyPart>();
+    private Queue<BodyPart> queue = new LinkedList<>();
     private Position[][] allPositions;
     private PlayField playField;
     private Head head;
     private Collision collision;
     private Food food;
+    private KeyboardHandler keyboardHandler;
+    private boolean paused;
 
 
     public Game(int cols, int rows, int cellSize){
         this.gameCols = cols;
         this.gameRows = rows;
+        this.paused = false;
         this.playField = new PlayField(cols, rows, cellSize);
-        this.head = new Head(this.playField);
         this.collision = new Collision();
+        this.head = new Head(this.playField);
+        this.keyboardHandler = new KeyboardHandler(this, this.head);
         this.allPositions = new Position[cols][rows];
+
     }
 
     public void init(){
@@ -34,9 +39,8 @@ public class Game {
                 allPositions[i][j] = new Position(i, j);
             }
         }
-
-        head.setPosition(allPositions[(gameCols/2) -1][(gameRows/2)-1]);
-        allPositions[(gameCols/2) -1][(gameRows/2)-1].setOccupied(true);
+        System.out.println(allPositions[(gameCols-1)][(0)].getRow());
+        head.setPosition(new Position((gameCols/2) -1,((gameRows/2)-1)));
         head.getHeadRectangle().setColor(Color.RED);
         head.getHeadRectangle().fill();
 
@@ -61,4 +65,38 @@ public class Game {
         }
         createFood();
     }
+
+    public void start() throws InterruptedException{
+
+
+        while(true){
+
+                Thread.sleep(50);
+                int oldCols = head.getPosition().getCol();
+                int oldRows = head.getPosition().getRow();
+                head.move();
+                if (!queue.isEmpty()) {
+                    BodyPart tail = queue.poll();
+                    tail.setNewPosition(allPositions[oldCols][oldRows]);
+                    queue.offer(tail);
+                }
+                int headCols = head.getPosition().getCol();
+                int headRows = head.getPosition().getRow();
+
+                if (collision.checkCollision(allPositions[headCols][headRows])){
+                    System.out.println("you have lost the game");
+                    return;
+                }
+                if(collision.checkFoodCollision(allPositions[headCols][headRows])){
+                    System.out.println("omnomnom");
+                    queue.offer(new BodyPart(allPositions[headCols][headRows], playField));
+                    food.getEaten();
+                    createFood();
+                }
+
+
+
+        }
+    }
+
 }

@@ -51,10 +51,10 @@ public class PlayField {
     }
 
     public int colsToX(int cols) {
-        return cols * cellSize - PADDING;
+        return cols * cellSize + PADDING;
     }
 
     public int rowsToY(int rows) {
-        return rows * cellSize - PADDING;
+        return rows * cellSize + PADDING;
     }
 }

@@ -25,8 +25,8 @@ public class Food {
     }
 
     public void newFood(Position position){
-        int oldX = field.colsToX(position.getCol());
-        int oldY = field.rowsToY(position.getRow());
+        int oldX = field.colsToX(this.position.getCol());
+        int oldY = field.rowsToY(this.position.getRow());
 
         this.position = position;
         this.position.setFooded(true);
@@ -35,7 +35,7 @@ public class Food {
         int newY = field.rowsToY(position.getRow());
 
         this.foodCircle.translate(newX - oldX, newY - oldY);
-        this.foodCircle.draw();
+        this.foodCircle.fill();
     }
 
 
