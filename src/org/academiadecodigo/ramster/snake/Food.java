@@ -10,11 +10,13 @@ public class Food {
     private Ellipse foodCircle;
 
     public Food(PlayField field, Position pos){
+        this.field = field;
         this.position = pos;
         this.position.setFooded(true);
         this.foodCircle = new Ellipse(field.colsToX(position.getCol()), field.rowsToY(position.getRow()), field.getCellSize(), field.getCellSize());
         this.foodCircle.setColor(Color.RED);
-        this.foodCircle.draw();
+        this.foodCircle.fill();
+
     }
 
     public void getEaten(){

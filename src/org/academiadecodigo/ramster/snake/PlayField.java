@@ -1,5 +1,6 @@
 package org.academiadecodigo.ramster.snake;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class PlayField {
@@ -21,7 +22,8 @@ public class PlayField {
     }
 
     public void init() {
-        field.draw();
+        field.setColor(Color.BLACK);
+        field.fill();
     }
 
     public int getCols() {

@@ -28,7 +28,7 @@ public class Game {
     }
 
     public void init(){
-
+        playField.init();
         for (int i = 0; i < allPositions.length; i++){
             for (int j = 0; j < allPositions[i].length; j++){
                 allPositions[i][j] = new Position(i, j);
@@ -38,13 +38,15 @@ public class Game {
         head.setPosition(allPositions[(gameCols/2) -1][(gameRows/2)-1]);
         allPositions[(gameCols/2) -1][(gameRows/2)-1].setOccupied(true);
         head.getHeadRectangle().setColor(Color.RED);
-        head.getHeadRectangle().draw();
+        head.getHeadRectangle().fill();
+
+        createFood();
 
     }
 
     public void createFood(){
-        int randomCol = (int)Math.random() * gameCols;
-        int randomRow = (int)Math.random() * gameRows;
+        int randomCol = (int)(Math.random() * gameCols);
+        int randomRow = (int)(Math.random() * gameRows);
 
         if (this.food == null) {
             if (!allPositions[randomCol][randomRow].isOccupied() && !allPositions[randomCol][randomRow].hasFood()) {
