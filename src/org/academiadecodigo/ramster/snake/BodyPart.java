@@ -13,7 +13,7 @@ public class BodyPart {
         this.position = position;
         this.field = field;
         this.rectangle = new Rectangle (field.colsToX(position.getCol()), field.rowsToY(position.getRow()), field.getCellSize(), field.getCellSize());
-        this.rectangle.setColor(Color.GREEN);
+        this.rectangle.setColor(Color.GRAY);
         this.rectangle.fill();
     }
 

@@ -22,7 +22,7 @@ public class PlayField {
     }
 
     public void init() {
-        field.setColor(Color.BLACK);
+        field.setColor(Color.CYAN);
         field.fill();
     }
 

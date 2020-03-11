@@ -3,7 +3,7 @@ package org.academiadecodigo.ramster.snake;
 public class Main {
     public static void main(String[] args)  {
 
-        Game game = new Game(50, 50, 10);
+        Game game = new Game(20, 20, 15);
         game.init();
 
         try {

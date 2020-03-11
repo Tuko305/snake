@@ -34,14 +34,14 @@ public class Game {
 
     public void setPaused(boolean paused) {
         this.paused = paused;
-        if (paused){
+        if (paused) {
             System.out.println("You have paused the game");
             return;
         }
         System.out.println("You have unpaused the game");
     }
 
-    public boolean getPaused(){
+    public boolean getPaused() {
         return this.paused;
     }
 
@@ -54,7 +54,7 @@ public class Game {
         }
         System.out.println(allPositions[(gameCols - 1)][(0)].getRow());
         head.setPosition(new Position((gameCols / 2) - 1, ((gameRows / 2) - 1)));
-        head.getHeadRectangle().setColor(Color.RED);
+        head.getHeadRectangle().setColor(Color.GRAY);
         head.getHeadRectangle().fill();
 
         createFood();
@@ -84,26 +84,27 @@ public class Game {
 
         while (true) {
 
-            while (paused){
+            while (paused) {
                 Thread.sleep(50);
 
             }
-            Thread.sleep(50);
+            Thread.sleep(100);
             int oldCols = head.getPosition().getCol();
             int oldRows = head.getPosition().getRow();
             boolean deadlyMove;
             deadlyMove = head.move();
-
-            if (deadlyMove){
-                System.out.println("You have gone out of bounds");
-                return;
-            }
 
             if (!queue.isEmpty()) {
                 BodyPart tail = queue.poll();
                 tail.setNewPosition(allPositions[oldCols][oldRows]);
                 queue.offer(tail);
             }
+
+            if (deadlyMove) {
+                System.out.println("You have gone out of bounds");
+                return;
+            }
+
             int headCols = head.getPosition().getCol();
             int headRows = head.getPosition().getRow();
 
