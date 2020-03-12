@@ -1,5 +1,7 @@
-package org.academiadecodigo.ramster.snake;
+package org.academiadecodigo.ramster.snake.gameObjects;
 
+import org.academiadecodigo.ramster.snake.positionLogic.PlayField;
+import org.academiadecodigo.ramster.snake.positionLogic.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 

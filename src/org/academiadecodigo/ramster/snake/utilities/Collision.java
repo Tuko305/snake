@@ -1,4 +1,6 @@
-package org.academiadecodigo.ramster.snake;
+package org.academiadecodigo.ramster.snake.utilities;
+
+import org.academiadecodigo.ramster.snake.positionLogic.Position;
 
 public class Collision {
 

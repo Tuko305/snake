@@ -1,4 +1,4 @@
-package org.academiadecodigo.ramster.snake;
+package org.academiadecodigo.ramster.snake.positionLogic;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -36,18 +36,6 @@ public class PlayField {
 
     public int getCellSize() {
         return cellSize;
-    }
-
-    public static int getPADDING() {
-        return PADDING;
-    }
-
-    public int getX() {
-        return field.getX();
-    }
-
-    public int getY() {
-        return field.getY();
     }
 
     public int colsToX(int cols) {

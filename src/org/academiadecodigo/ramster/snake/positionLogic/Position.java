@@ -1,4 +1,4 @@
-package org.academiadecodigo.ramster.snake;
+package org.academiadecodigo.ramster.snake.positionLogic;
 
 public class Position {
 
@@ -28,14 +28,6 @@ public class Position {
 
     public boolean hasFood() {
         return hasFood;
-    }
-
-    public void setCol(int col) {
-        this.col = col;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
     }
 
     public void updateCol(int col){

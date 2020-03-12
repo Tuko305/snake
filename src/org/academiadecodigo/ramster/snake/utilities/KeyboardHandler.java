@@ -1,5 +1,7 @@
-package org.academiadecodigo.ramster.snake;
+package org.academiadecodigo.ramster.snake.utilities;
 
+import org.academiadecodigo.ramster.snake.Game;
+import org.academiadecodigo.ramster.snake.gameObjects.Head;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;

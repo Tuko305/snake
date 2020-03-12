@@ -1,5 +1,12 @@
 package org.academiadecodigo.ramster.snake;
 
+import org.academiadecodigo.ramster.snake.positionLogic.PlayField;
+import org.academiadecodigo.ramster.snake.gameObjects.BodyPart;
+import org.academiadecodigo.ramster.snake.gameObjects.Food;
+import org.academiadecodigo.ramster.snake.gameObjects.Head;
+import org.academiadecodigo.ramster.snake.positionLogic.Position;
+import org.academiadecodigo.ramster.snake.utilities.Collision;
+import org.academiadecodigo.ramster.snake.utilities.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 import java.util.LinkedList;
