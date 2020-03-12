@@ -7,6 +7,7 @@ import org.academiadecodigo.ramster.snake.gameObjects.Head;
 import org.academiadecodigo.ramster.snake.positionLogic.Position;
 import org.academiadecodigo.ramster.snake.utilities.Collision;
 import org.academiadecodigo.ramster.snake.utilities.KeyboardHandler;
+import org.academiadecodigo.ramster.snake.utilities.Sound;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
 import java.util.LinkedList;
@@ -25,6 +26,7 @@ public class Game {
     private Food food;
     private KeyboardHandler keyboardHandler;
     private boolean paused;
+    private Sound omnomnom;
 
 
     public Game(int cols, int rows, int cellSize) {
@@ -36,6 +38,7 @@ public class Game {
         this.head = new Head(this.playField);
         this.keyboardHandler = new KeyboardHandler(this, this.head);
         this.allPositions = new Position[cols][rows];
+        this.omnomnom = new Sound("/resources/sounds/omnomnom.wav");
 
     }
 
@@ -95,6 +98,9 @@ public class Game {
                 Thread.sleep(50);
 
             }
+
+            omnomnom.stop(3);
+
             Thread.sleep(100);
             int oldCols = head.getPosition().getCol();
             int oldRows = head.getPosition().getRow();
@@ -121,6 +127,7 @@ public class Game {
             }
             if (collision.checkFoodCollision(allPositions[headCols][headRows])) {
                 System.out.println("omnomnom");
+                omnomnom.play(2000);
                 queue.offer(new BodyPart(allPositions[headCols][headRows], playField));
                 food.getEaten();
                 createFood();

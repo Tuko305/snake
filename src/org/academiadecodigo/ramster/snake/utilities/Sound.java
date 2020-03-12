@@ -17,13 +17,28 @@ public class Sound {
     public void play(boolean fromStart) {
         if (fromStart) {
             clip.setFramePosition(0);
+
         }
 
         clip.start();
     }
 
+    public void play(int frameStart){
+
+            clip.setFramePosition(frameStart);
+            clip.start();
+
+    }
+
     public void stop() {
+
         clip.stop();
+    }
+
+    public void stop(int fraction){
+        if (clip.getFramePosition() >= (clip.getFrameLength() / fraction)){
+            clip.stop();
+        }
     }
 
     public void close() {
@@ -37,7 +52,10 @@ public class Sound {
     public void loopIndef() {
         clip.setLoopPoints(0, (int) (getLength() * 0.94)); //sets loop points at start and end of track
         clip.loop(Clip.LOOP_CONTINUOUSLY); //activates loop
+
     }
+
+
 
     public void reOpen() {
         AudioInputStream inputStream;
