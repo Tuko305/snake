@@ -11,10 +11,12 @@ public class Head {
     private Rectangle headRectangle;
     private int xSpeed = 0;
     private int ySpeed = 0;
+    private boolean canChangeDirection;
 
 
     public Head(PlayField field) {
         this.field = field;
+        this.canChangeDirection = true;
     }
 
     public void setPosition(Position position) {
@@ -53,40 +55,62 @@ public class Head {
         this.position.updateCol(xSpeed);
         this.position.updateRow(ySpeed);
         this.headRectangle.translate((xSpeed * field.getCellSize()), (ySpeed * field.getCellSize()));
+        canChangeDirection = true;
         return false;
 
     }
 
     public void moveUp() {
+        if(!canChangeDirection){
+            return;
+        }
+
         if (ySpeed == 1){
             return;
         }
         setYSpeed(-1);
         setXSpeed(0);
+        canChangeDirection = false;
     }
 
     public void moveDown() {
+        if(!canChangeDirection){
+            return;
+        }
+
         if (ySpeed == -1){
             return;
         }
         setYSpeed(1);
         setXSpeed(0);
+        canChangeDirection = false;
     }
 
     public void moveLeft() {
+        if(!canChangeDirection){
+            return;
+        }
+
         if (xSpeed == 1){
             return;
         }
         setXSpeed(-1);
         setYSpeed(0);
+        canChangeDirection = false;
     }
 
     public void moveRight() {
+        if(!canChangeDirection){
+            return;
+        }
+
         if (xSpeed == -1){
             return;
         }
         setXSpeed(1);
         setYSpeed(0);
+        canChangeDirection = false;
+
     }
 
 
