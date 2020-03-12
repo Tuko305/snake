@@ -54,25 +54,42 @@ public class KeyboardHandler implements org.academiadecodigo.simplegraphics.keyb
             case KeyboardEvent.KEY_UP:
 
                 head.moveUp();
+                try {
+                    Thread.sleep(45);
+                }catch (Exception ex){
+                    System.out.println("sleep in keyboardhandler.");
+                }
 
                 break;
 
             case KeyboardEvent.KEY_DOWN:
 
                 head.moveDown();
-
+                try {
+                    Thread.sleep(90);
+                }catch (Exception ex){
+                    System.out.println("sleep in keyboardhandler.");
+                }
                 break;
 
             case KeyboardEvent.KEY_LEFT:
 
                 head.moveLeft();
-
+                try {
+                    Thread.sleep(90);
+                }catch (Exception ex){
+                    System.out.println("sleep in keyboardhandler.");
+                }
                 break;
 
             case KeyboardEvent.KEY_RIGHT:
 
                 head.moveRight();
-
+                try {
+                    Thread.sleep(90);
+                }catch (Exception ex){
+                    System.out.println("sleep in keyboardhandler.");
+                }
                 break;
             case KeyboardEvent.KEY_SPACE:
 

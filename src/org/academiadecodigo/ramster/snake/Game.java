@@ -27,6 +27,7 @@ public class Game {
     private KeyboardHandler keyboardHandler;
     private boolean paused;
     private Sound omnomnom;
+    private Sound theme;
 
 
     public Game(int cols, int rows, int cellSize) {
@@ -39,6 +40,7 @@ public class Game {
         this.keyboardHandler = new KeyboardHandler(this, this.head);
         this.allPositions = new Position[cols][rows];
         this.omnomnom = new Sound("/resources/sounds/omnomnom.wav");
+        this.theme = new Sound("/resources/sounds/SnakeTheme.wav");
 
     }
 
@@ -68,6 +70,9 @@ public class Game {
         head.getHeadRectangle().fill();
 
         createFood();
+
+        theme.play(true);
+        theme.loopIndef();
 
     }
 
@@ -101,7 +106,7 @@ public class Game {
 
             omnomnom.stop(3);
 
-            Thread.sleep(100);
+            Thread.sleep(90);
             int oldCols = head.getPosition().getCol();
             int oldRows = head.getPosition().getRow();
             boolean deadlyMove;
@@ -126,7 +131,6 @@ public class Game {
                 return;
             }
             if (collision.checkFoodCollision(allPositions[headCols][headRows])) {
-                System.out.println("omnomnom");
                 omnomnom.play(2000);
                 queue.offer(new BodyPart(allPositions[headCols][headRows], playField));
                 food.getEaten();
